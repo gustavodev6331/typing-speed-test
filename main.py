@@ -1,4 +1,5 @@
 from tkinter import *
+import time
 
 window = Tk()
 window.title("Typing speed test")
@@ -23,5 +24,30 @@ entry.pack()
 #result
 result_label = Label(text=f"Your speed is: {wpm}")
 result_label.pack()
+
+
+start_time = 0
+def start_test(event):
+    global start_time
+    global wpm
+    if start_time == 0:
+        start_time = time.time()
+    else:
+        pass
+    if entry.get() == text_label["text"]:
+        end_time = time.time()
+
+        elapsed_time = end_time - start_time
+        min = elapsed_time / 60
+
+        words = text_label["text"].split()
+        words_count = len(words)
+
+        wpm = words_count / min
+
+        result_label.config(text=f"Your speed is: {wpm} words per minute")
+
+
+entry.bind("<Key>", start_test)
 
 window.mainloop()
