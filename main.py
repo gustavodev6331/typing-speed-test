@@ -25,29 +25,53 @@ entry.pack()
 result_label = Label(text=f"Your speed is: {wpm}")
 result_label.pack()
 
+#restart button
+button = Button(text="Re-start test")
+button.pack()
+
 
 start_time = 0
+
 def start_test(event):
     global start_time
-    global wpm
+
     if start_time == 0:
         start_time = time.time()
-    else:
-        pass
-    if entry.get() == text_label["text"]:
+
+
+
+def finish_test(event):
+    global start_time
+    if start_time != 0:
+        words_count = 0
+        incorrect_words = 0
         end_time = time.time()
 
         elapsed_time = end_time - start_time
         minutes = elapsed_time / 60
 
-        words = text_label["text"].split()
-        words_count = len(words)
+        original = text_label["text"].split()
+        typed = entry.get().split()
+        print(original)
+        print(typed)
+
+        for i in range (min(len(original), len(typed))):
+            if original[i] == typed[i]:
+                words_count += 1
+            else:
+                incorrect_words +=1
 
         wpm = words_count / minutes
 
-        result_label.config(text=f"Your speed is: {wpm:.0f} words per minute")
+        result_label.config(text=f"Your speed is: {wpm:.0f} words per minute. "
+                                 f"You had {words_count} correct words. "
+                                 f"and {incorrect_words} incorrect words.")
+
+
 
 
 entry.bind("<Key>", start_test)
+
+entry.bind("<Return>", finish_test)
 
 window.mainloop()
