@@ -38,14 +38,14 @@ def start_test(event):
         end_time = time.time()
 
         elapsed_time = end_time - start_time
-        min = elapsed_time / 60
+        minutes = elapsed_time / 60
 
         words = text_label["text"].split()
         words_count = len(words)
 
-        wpm = words_count / min
+        wpm = words_count / minutes
 
-        result_label.config(text=f"Your speed is: {wpm} words per minute")
+        result_label.config(text=f"Your speed is: {wpm:.0f} words per minute")
 
 
 entry.bind("<Key>", start_test)
