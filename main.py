@@ -25,9 +25,7 @@ entry.pack()
 result_label = Label(text=f"Your speed is: {wpm}")
 result_label.pack()
 
-#restart button
-button = Button(text="Re-start test")
-button.pack()
+
 
 
 start_time = 0
@@ -67,7 +65,20 @@ def finish_test(event):
                                  f"You had {words_count} correct words. "
                                  f"and {incorrect_words} incorrect words.")
 
+        entry.config(state="disabled")
 
+def restart_test():
+    global start_time
+
+    start_time = 0
+    entry.config(state="normal")
+    entry.delete(0, END)
+    result_label.config(text=f"Your speed is: {wpm}")
+
+
+#restart button
+button = Button(text="Re-start test", command=restart_test)
+button.pack()
 
 
 entry.bind("<Key>", start_test)
