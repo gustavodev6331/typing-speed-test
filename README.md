@@ -23,7 +23,7 @@ A desktop typing speed test built with Python and Tkinter. The application measu
 
 * Python
 * Tkinter
-* Time
+* `Time`
 
 ## How It Works
 
