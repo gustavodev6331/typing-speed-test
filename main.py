@@ -22,7 +22,7 @@ entry = Entry()
 entry.pack()
 
 #result
-result_label = Label(text=f"Your speed is: {wpm}")
+result_label = Label(text=f"Start typing to begin the test")
 result_label.pack()
 
 
@@ -50,8 +50,6 @@ def finish_test(event):
 
         original = text_label["text"].split()
         typed = entry.get().split()
-        print(original)
-        print(typed)
 
         for i in range (min(len(original), len(typed))):
             if original[i] == typed[i]:
@@ -73,7 +71,7 @@ def restart_test():
     start_time = 0
     entry.config(state="normal")
     entry.delete(0, END)
-    result_label.config(text=f"Your speed is: {wpm}")
+    result_label.config(text=f"Start typing to begin the test")
 
 
 #restart button
